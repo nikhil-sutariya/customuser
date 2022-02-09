@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block nav_item_login %}active{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h5>You can login here</h5>
+    <form method="post" class="mt-4">
+        {% csrf_token %}
+        <div class="form-group w-50">
+            <label for="email" class="form-control-label">Email address</label>
+            <input type="email" class="form-control mt-2 bg-light" id="email" name="email" placeholder="Enter your email address">
+        </div><br>
+        <div class="form-group w-50">
+            <label for="password" class="form-control-label">Passowrd</label>
+            <input type="password" class="form-control mt-2 bg-light" id="password" name="password" placeholder="Enter your password">
+        </div><br>
+        <button type="submit" class="btn btn-success">Login</button><a href="{% url 'password_reset' %}" class="ms-5">Forgot passowrd?</a>
+    </form>
+</div>
+{% endblock %}

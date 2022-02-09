@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    {% if user.is_authenticated %}
+    <h1>Hello {{ user.first_name.capitalize }} {{ user.last_name.capitalize }}</h1>
+    {% else %}
+    <h1>Please login to continue.</h1>
+    {% endif %}
+</div>
+{% endblock %}
