@@ -1,14 +1,15 @@
 from django.contrib import admin
-from .models import CustomUser
+from .models import User
 from django.utils.translation import gettext_lazy as _
 
-@admin.register(CustomUser)
+@admin.register(User)
 class UserAdmin(admin.ModelAdmin):
     add_form_template = 'admin/auth/user/add_form.html'
     change_user_password_template = None
     fieldsets = (
-        (None, {'fields': ('email', 'password')}),
+        (_('User credential'), {'fields': ('email', 'password')}),
         (_('Personal info'), {'fields': ('first_name', 'last_name', 'phone')}),
+        (_('Verification'), {'fields': ('phone_otp', 'is_phone_verified', 'is_email_verified')}),
         (_('Permissions'), {
             'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions'),
         }),

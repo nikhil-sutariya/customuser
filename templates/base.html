@@ -20,22 +20,24 @@
                 <ul class="navbar-nav">
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="{% url 'logout' %}">Logout</a>
+                        <a class="nav-link" aria-current="page" href="{% url 'logout-view' %}">Logout</a>
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link {% block nav_item_login %}{% endblock %}" aria-current="page" href="{% url 'login' %}">Login</a>
+                        <a class="nav-link {% block nav_item_login %}{% endblock %}" aria-current="page" href="{% url 'login-view' %}">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% block nav_item_signup %}{% endblock %}" aria-current="page" href="{% url 'signup' %}">Signup</a>
+                        <a class="nav-link {% block nav_item_signup %}{% endblock %}" aria-current="page" href="{% url 'signup-view' %}">Signup</a>
                     </li>
                     {% endif %}
                 </ul>
             </div>
         </div>
     </nav>
-      {% block content %}
-      {% endblock %}
+    <div class="container mt-4">
+        {% block content %}
+        {% endblock %}
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

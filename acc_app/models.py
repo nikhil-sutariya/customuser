@@ -1,9 +1,8 @@
-from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
+from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.utils.translation import gettext_lazy as _
 
-
-class CustomUserManager(BaseUserManager):
+class UserManager(BaseUserManager):
     def _create_user(self, email, phone, password, **extra_fields):
         if not email:
             raise ValueError('Email is required')
@@ -31,13 +30,15 @@ class CustomUserManager(BaseUserManager):
 
         return self._create_user(email, phone, password, **extra_fields)
 
-
-class CustomUser(AbstractUser):
+class User(AbstractUser):
     username = None
-    email = models.EmailField(_('email address'), unique=True)
-    phone = models.CharField(_('phone number'), max_length=10, unique=True)
+    email = models.EmailField(_('email address'), unique= True)
+    phone = models.CharField(_('phone number'), max_length= 10, unique= True)
+    phone_otp = models.CharField(_('phone otp'), max_length= 4, blank= True, null= True)
+    is_email_verified = models.BooleanField(_('is email verified'), default= False)
+    is_phone_verified = models.BooleanField(_('is phone verified'), default= False)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['phone']
 
-    objects = CustomUserManager()
+    objects = UserManager()
